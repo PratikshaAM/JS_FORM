@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="contactForm">
+            <h2>Contact Information</h2>
+            <img src="Mascot-final.png" alt="" class="mascot">
+            <div class="icon">
+                <img src="facebook.png" alt="">
+                <img src="insta.png" alt="">
+                <img src="linkden.png" alt="">
+                <img src="twitter.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="input">
+            <form name="submit-to-google-sheet" action="https://script.google.com/macros/s/AKfycbzmcqKnKqFfHN2n0ASz-O--xiRLGOw_nYOGlh0mimHSNj-cwhx_9h5albjXbujMvQrKNA/exec">
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" placeholder="Email"><br><br>
+
+                <label for="phone">Phone</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="Phone"><br><br>
+
+                <label for="message">Message</label><br>
+                <textarea id="message" placeholder="Write the message" name="message" Prows="4" cols="50"
+                    required></textarea><br><br>
+
+                <input type="submit" value="Submit" id="submit">
+            </form>
+        </div>
+
+
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmcqKnKqFfHN2n0ASz-O--xiRLGOw_nYOGlh0mimHSNj-cwhx_9h5albjXbujMvQrKNA/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thank you! your form is submitted successfully." ))
+            .then(() => {  window.location.reload(); })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+    <!-- <form name="submit-to-google-sheet">
+        <input name="email" type="email" placeholder="Email" required>
+        <button type="submit">Send</button>
+        <span id="success"></span>
+      </form>
+      
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwr7wtD0Ci4QTPyYwa7rPPzjlvSvViGKmSjs1XRdHbjRMPIfTILV1KcBWfiUWSXx5ojnQ/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const success = document.getElementById("success");
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response =>{
+                success.innerHTML  ="data successfully saved";
+                setTimeout(function()
+                {
+                    success.innerHTML = "";
+                },5000)
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script> -->
+</body>
+<!-- <script>
+    let url ='https://script.google.com/macros/s/AKfycbx-Jdn4S8BbUlso8N58KazDccryiJ70w-AOyOcUUt-dzaa71_DP5ciJKCkRWNgocvxytQ/exec'
+    let form = document.querySelector('#form');
+    form.addEventListener("submit",(e)=>{
+        let d = new FormData(form);
+        fetch(url,{
+            method:"POST",
+            body:d
+        }).then((res)=>res.text())
+        .then((finalRes)=>console.log(finalRes))
+        e.preventDefault();
+    })
+</script> -->
+
+</html>
